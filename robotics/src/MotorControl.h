@@ -2,6 +2,9 @@
  * Generic Motor Control Logic
  */
 
+#ifndef MOTORCONTROL_H_
+#define MOTORCONTROL_H_
+
 typedef enum {
     FORWARD,
     BACKWARD,
@@ -10,3 +13,5 @@ typedef enum {
 } MotorDriveDirection;
 
 void DriveMotor(MotorDriveDirection dir);
+
+#endif  // MOTORCONTROL_H_

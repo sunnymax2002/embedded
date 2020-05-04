@@ -14,7 +14,7 @@ void BlinkLed() {
 }
 
 void setup() {
-    taskLedBlink = CoOpTask::CoOpTask();
+    taskLedBlink = CoOpTask(PERIODIC, 100);
 }
 
 void loop() {

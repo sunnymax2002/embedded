@@ -8,32 +8,32 @@
 #include "CoOpMultiTasking.h"
 
 CoOpTask::CoOpTask(CoOpTaskType taskType, uint64_t periodOrDelay) {
-    this.type = taskType;
-    this.period = periodOrDelay;
-    this.state = SUSPENDED;
+    _type = taskType;
+    _period = periodOrDelay;
+    _state = SUSPENDED;
 }
 
-CoOpTask::Start() {
+void CoOpTask::Start() {
     // If task not already running
-    if(this.state != ACTIVE) {
-        this.lastStartTime = mS_timestamp();
+    if(_state != ACTIVE) {
+        _lastStartTime = mS_timestamp();
     }
 }
 
-CoOpTask::Stop() {
+void CoOpTask::Stop() {
     // Mark the state of task as STOPPED
-    this.state = STOPPED;
+    _state = STOPPED;
 }
 
 bool CoOpTask::isTimeToRun() {
-    if(this.state == ACTIVE) {
+    if(_state == ACTIVE) {
         uint64_t currTime = mS_timestamp();
-        if(currTime >= this.lastStartTime + this.period) {
+        if(currTime >= _lastStartTime + _period) {
             // Update and return true
-            this.lastStartTime = currTime;
+            _lastStartTime = currTime;
             
-            if(this.type == RUN_ONCE) {
-                this.state = STOPPED;
+            if(_type == RUN_ONCE) {
+                _state = STOPPED;
             }
 
             return true;
