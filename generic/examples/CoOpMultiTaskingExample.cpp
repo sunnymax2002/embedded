@@ -24,7 +24,7 @@ void setup() {
 void loop() {
     if(taskLedBlink.isTimeToRun()) BlinkLed();
 
-    if(taskFBMotorDrive.isTimeToRun()) DriveMotor(FORWARD);
+    if(taskFBMotorDrive.isTimeToRun()) MotorControl::DriveMotor(MotorControl::FORWARD);
 
-    if(taskLRMotorDrive.isTimeToRun()) DriveMotor(LEFT);
+    if(taskLRMotorDrive.isTimeToRun()) MotorControl::DriveMotor(MotorControl::LEFT);
 }
