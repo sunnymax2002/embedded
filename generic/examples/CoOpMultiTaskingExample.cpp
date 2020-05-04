@@ -5,16 +5,20 @@
 #include "CoOpMultiTasking.h"
 #include "MotorControl.h"
 
-CoOpTask taskLedBlink;
-CoOpTask taskFBMotorDrive;
-CoOpTask taskLRMotorDrive;
+// Create Tasks and define their nature
+CoOpTask taskLedBlink(PERIODIC, 100);
+CoOpTask taskFBMotorDrive(PERIODIC, 1000);
+CoOpTask taskLRMotorDrive(PERIODIC, 2000);
 
+// Function for taskLedBlink: These functions should return quickly and must not call any form of delay()
 void BlinkLed() {
-
+    // TODO add code
 }
 
 void setup() {
-    taskLedBlink = CoOpTask(PERIODIC, 100);
+    taskLedBlink.Start();
+    taskFBMotorDrive.Start();
+    taskLRMotorDrive.Start();
 }
 
 void loop() {
