@@ -6,9 +6,9 @@
 #include "MotorControl.h"
 
 // Create Tasks and define their nature
-CoOpTask taskLedBlink(PERIODIC, 100);
-CoOpTask taskFBMotorDrive(PERIODIC, 1000);
-CoOpTask taskLRMotorDrive(PERIODIC, 2000);
+CoOpTask taskLedBlink(0, 100);
+CoOpTask taskFBMotorDrive(1, 1000);
+CoOpTask taskLRMotorDrive(2, 2000);
 
 // Function for taskLedBlink: These functions should return quickly and must not call any form of delay()
 void BlinkLed() {

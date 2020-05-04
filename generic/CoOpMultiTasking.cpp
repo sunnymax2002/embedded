@@ -7,8 +7,8 @@
 #include "BoardSpecific.h"
 #include "CoOpMultiTasking.h"
 
-CoOpTask::CoOpTask(CoOpTaskType taskType, uint64_t periodOrDelay) {
-    _type = taskType;
+CoOpTask::CoOpTask(uint8_t taskId, uint64_t periodOrDelay) {
+    _taskId = taskId;
     _period = periodOrDelay;
     _state = SUSPENDED;
 }
@@ -31,11 +31,6 @@ bool CoOpTask::isTimeToRun() {
         if(currTime >= _lastStartTime + _period) {
             // Update and return true
             _lastStartTime = currTime;
-            
-            if(_type == RUN_ONCE) {
-                _state = STOPPED;
-            }
-
             return true;
         }
     } else {
@@ -43,5 +38,23 @@ bool CoOpTask::isTimeToRun() {
     }
 }
 
+void CoOpTask::Update(uint64_t period){
+    if(_state != ACTIVE) {
+        _period = period;
+    }
+}
+
+// Getter functions
+uint8_t CoOpTask::GetTaskId() {
+    return _taskId;
+}
+uint64_t CoOpTask::GetTaskPeriod() {
+    return _period;
+}
+CoOpTask::State CoOpTask::GetTaskState() {
+    return _state;
+}
+
 CoOpTask::~CoOpTask() {
+    // TODO check if anything needed to free the memory, especially for tasks that're decommissioned before the board switched off
 }
