@@ -6,8 +6,8 @@ MotorControl::MotorControl(uint8_t pinPlus, uint8_t pinMinus) {
     _pinPlus = pinPlus;
     _pinMinus = pinMinus;
     _pwmOn = false;
-    ConfigPin(_pinPlus, OUTPUT);
-    ConfigPin(_pinMinus, OUTPUT);
+    ConfigPin(_pinPlus, OUT);
+    ConfigPin(_pinMinus, OUT);
 }
 
 void MotorControl::ConfigMotorPwm(uint64_t pwmMaxValue, uint32_t pwmStepSize) {
