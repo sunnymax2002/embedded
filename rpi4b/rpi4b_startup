@@ -1,0 +1,25 @@
+#!/bin/bash
+
+while
+do
+    ps -ef | grep 'vncserver' | wc -l
+done
+
+# Wait for notepad to start
+until pids=$(pidof vncserver)
+do   
+    sleep 1
+done
+
+# Notepad has now started.
+
+# There could be multiple notepad processes, so loop over the pids
+for pid in $pids
+do        
+    taskset -p 03 $pid
+    renice -n 5 -p $pid
+    sleep 5
+    renice -n 0 -p $pid
+done
+
+# The notepad process(es) have now been handled
