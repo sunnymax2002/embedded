@@ -23,14 +23,15 @@ def do_connect():
     wlan.active(True)
     if not wlan.isconnected():
         print('connecting to network...')
-        wlan.connect('ACT102504171662', '68170929')
+        wlan.connect('Airtel_sunn_2815', 'go-away')
         while not wlan.isconnected():
             pass
     print('network config:', wlan.ifconfig())
     # turn LED on
     led = machine.Pin(2, machine.Pin.OUT)
-    # led.on()
+    #led.on()
+    led.off()
     
 do_connect()
 http_get('http://micropython.org/ks/test.html')
-http_get('http://lite.cnn.com/en')
+http_get('http://wiserbyday.com/index.html')
